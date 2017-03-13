@@ -1,4 +1,4 @@
-<%= form_for(picture) do |f| %>
+<%= form_for :picture, :url => pictures_path, :html => { :multipart => true } do |f| %>
   <% if picture.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(picture.errors.count, "error") %> prohibited this picture from being saved:</h2>
@@ -12,8 +12,8 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :imageable_id %>
-    <%= f.text_field :imageable_id %>
+    <%= f.label :image %>
+    <%= f.file_field :image %>
   </div>
 
   <div class="actions">

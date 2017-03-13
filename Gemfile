@@ -51,12 +51,13 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
+  gem 'figaro'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem "paperclip"
-gem 'aws-sdk', '~> 2.3'
+gem 'paperclip'
+gem 'aws-sdk'
 gem 's3_direct_upload'
 gem 'bootstrap-sass', '~> 3.3.6'

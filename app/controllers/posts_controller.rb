@@ -28,6 +28,11 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
+        if params[:images]
+          params[:images].each { |image|
+            @post.pictures.create(image: image)
+          }
+        end
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
