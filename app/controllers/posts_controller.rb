@@ -33,6 +33,11 @@ class PostsController < ApplicationController
             @post.pictures.create(image: image)
           }
         end
+        if params[:files]
+          params[:files].each { |file|
+            @post.pictures.create(file: file)
+          }
+        end
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else

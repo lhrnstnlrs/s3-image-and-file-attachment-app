@@ -1,5 +1,5 @@
 class Picture < ApplicationRecord
-  belongs_to :imageable, polymorphic: true, optional: true
+  belongs_to :imageable, polymorphic: true
   has_attached_file :image
 
   validates_attachment :image, 
