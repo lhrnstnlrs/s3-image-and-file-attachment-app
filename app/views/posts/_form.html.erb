@@ -11,24 +11,24 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :title %>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, :class => "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :content %>
-    <%= f.text_field :content %>
+    <%= f.text_area :content, :class => "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :pictures %>
-    <%= file_field_tag "images[]", type: :pictures, multiple: true %>
+    <%= file_field_tag "images[]", type: :image, multiple: true %>
   </div>
 
   <div class="field">
     <%= f.label :attachments %>
-    <%= file_field_tag "files[]", type: :attachments, multiple: true %>
+    <%= file_field_tag "files[]", type: :file, multiple: true %>
   </div>
 
   <div class="actions">

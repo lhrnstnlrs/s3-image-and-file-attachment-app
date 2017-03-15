@@ -35,7 +35,7 @@ class PostsController < ApplicationController
         end
         if params[:files]
           params[:files].each { |file|
-            @post.pictures.create(file: file)
+            @post.attachments.create(file: file)
           }
         end
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
