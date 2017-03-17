@@ -12,28 +12,26 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :title %>
-    <%= f.text_field :title, :class => "form-control" %>
+    <%= f.label :title, class: "control-label" %>
+    <%= f.text_field :title, class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= f.label :content %>
-    <%= f.text_area :content, :class => "form-control" %>
+    <%= f.label :content, class: "control-label" %>
+    <%= f.text_area :content, class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= f.label :pictures %>
-    <%= file_field_tag "images[]", type: :image, multiple: true %>
+    <%= f.label "Add Pictures", class: "control-label" %>
+    <%= file_field_tag "images[]", type: :image, multiple: true, class: "filestyle" %>
   </div>
 
-  <div class="field">
-    <%= f.label :attachments %>
-    <%= file_field_tag "files[]", type: :file, multiple: true %>
+  <div class="form-group">
+    <%= f.label :attachments, "Add Files", class: "control-label" %>
+    <%= file_field_tag "files[]", type: :file, multiple: true, class: "filestyle" %>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                posts_path %>
+  <div class="actions form-group">
+    <%= f.submit 'Save', class: 'btn btn-block btn-primary' %>
   </div>
 <% end %>

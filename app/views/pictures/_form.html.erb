@@ -10,13 +10,12 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :image %>
-    <%= f.file_field :image %>
+  <div class="form-group">
+    <%= f.label "Add Pictures", class: "control-label" %>
+    <%= file_field_tag "images[]", type: :image, multiple: true, class: "filestyle" %>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
+  <div class="actions form-group">
+    <%= f.submit 'Save', class: 'btn btn-block btn-primary' %>
   </div>
 <% end %>

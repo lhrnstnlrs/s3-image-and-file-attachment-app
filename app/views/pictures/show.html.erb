@@ -1,10 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<%= image_tag @picture.image.url(:imageable) %>
-
 <p>
-  <strong>Imageable:</strong>
-  <%= @picture.imageable %>
+  <%= image_tag @picture.image.url(:medium) %>
 </p>
 
 <%= link_to 'Edit', edit_picture_path(@picture) %> |
