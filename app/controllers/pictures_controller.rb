@@ -1,5 +1,6 @@
 class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
+  before_action :set_s3_direct_post, only: [:new, :edit, :create, :update]
 
   # GET /pictures
   # GET /pictures.json
@@ -34,7 +35,7 @@ class PicturesController < ApplicationController
         format.html { render :new }
         format.json { render json: @picture.errors, status: :unprocessable_entity }
       end
-    end
+end
   end
 
   # PATCH/PUT /pictures/1
@@ -65,6 +66,10 @@ class PicturesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_picture
       @picture = Picture.find(params[:id])
+    end
+
+    def set_s3_direct_post
+    @s3_direct_post = S3_BUCKET.presigned_post(key: "uploads/${filename}", success_action_status: '201', acl: 'public-read')
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -1,4 +1,4 @@
-<%= form_for :picture, :url => pictures_path, :html => { :multipart => true } do |f| %>
+<%= form_for :picture, :url => pictures_path, :html => { multipart: true, class: 'directUpload', data: { 'form-data' => (@s3_direct_post.fields), 'url' => @s3_direct_post.url, 'host' => URI.parse(@s3_direct_post.url).host } } do |f| %>
   <% if picture.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(picture.errors.count, "error") %> prohibited this picture from being saved:</h2>
@@ -10,12 +10,13 @@
       </ul>
     </div>
   <% end %>
-  <div class="form-group">
-    <%= f.label "Add Pictures", class: "control-label" %>
-    <%= file_field_tag "images[]", type: :image, multiple: true, class: "filestyle" %>
+
+  <div class="field">
+    <%= f.label :image %>
+    <%= f.file_field :image, multiple: true %>
   </div>
 
-  <div class="actions form-group">
-    <%= f.submit 'Save', class: 'btn btn-block btn-primary' %>
+  <div class="actions">
+    <%= f.submit %>
   </div>
 <% end %>
