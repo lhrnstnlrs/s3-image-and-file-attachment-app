@@ -22,11 +22,6 @@
   </div>
 
   <div class="form-group">
-    <%= f.label "Add Pictures", class: "control-label" %>
-    <%= file_field_tag "images[]", id: "imageInput", type: :image, multiple: true, class: "filestyle" %>
-  </div>
-
-  <div class="form-group">
     <%= f.label :attachments, "Add Files", class: "control-label" %>
     <%= file_field_tag "files[]", type: :file, multiple: true, class: "filestyle" %>
   </div>

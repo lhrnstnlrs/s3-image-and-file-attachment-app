@@ -1,6 +1,5 @@
 class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
-  before_action :set_s3_direct_post, only: [:new, :edit, :create, :update]
 
   # GET /pictures
   # GET /pictures.json
@@ -25,17 +24,7 @@ class PicturesController < ApplicationController
   # POST /pictures
   # POST /pictures.json
   def create
-    @picture = Picture.new(picture_params)
-
-    respond_to do |format|
-      if @picture.save
-        format.html { redirect_to @picture, notice: 'Picture was successfully created.' }
-        format.json { render :show, status: :created, location: @picture }
-      else
-        format.html { render :new }
-        format.json { render json: @picture.errors, status: :unprocessable_entity }
-      end
-end
+    @picture = Picture.create(picture_params)
   end
 
   # PATCH/PUT /pictures/1
@@ -68,12 +57,8 @@ end
       @picture = Picture.find(params[:id])
     end
 
-    def set_s3_direct_post
-    @s3_direct_post = S3_BUCKET.presigned_post(key: "uploads/${filename}", success_action_status: '201', acl: 'public-read')
-    end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def picture_params
-      params.require(:picture).permit(:image)
+      params.require(:picture).permit(:direct_upload_url)
     end
 end

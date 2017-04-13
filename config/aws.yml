@@ -1,8 +1,8 @@
 defaults: &defaults
-  access_key_id: "devkey"
-  secret_access_key: "devkey"
-  bucket: "bucket"
-  region: "region"
+  access_key_id: <%=ENV["AWS_ACCESS_KEY_ID"]%>
+  secret_access_key: <%=ENV["AWS_SECRET_ACCESS_KEY"]%>
+  bucket: "s3upload-sample-db"
+  region: "ap-southeast-1"
 development:
   <<: *defaults
 test:

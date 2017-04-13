@@ -1,22 +1,24 @@
-<%= form_for :picture, :url => pictures_path, :html => { multipart: true, class: 'directUpload', data: { 'form-data' => (@s3_direct_post.fields), 'url' => @s3_direct_post.url, 'host' => URI.parse(@s3_direct_post.url).host } } do |f| %>
-  <% if picture.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(picture.errors.count, "error") %> prohibited this picture from being saved:</h2>
-
-      <ul>
-      <% picture.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<%= s3_uploader_form callback_url: pictures_url, 
+  callback_param: "picture[direct_upload_url]",
+  id: 'image-uploader',
+  max_file_size: 5.megabytes,
+  expiration: 24.hours.from_now.utc.iso8601,
+  data: { remote: true } do %>
+    <div class="form-group">
+      <%= label_tag :image %>
+      <%= file_field_tag :file, multiple: true, class: "filestyle" %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :image %>
-    <%= f.file_field :image, multiple: true %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>
+
+<output class="row-fluid">
+  <div id="image-list"></div>
+</output>
+
+<div id="uploads_container"></div>
+
+<script id="template-upload" type="text/x-tmpl">
+<div id="upload_{%=o.unique_id%}" class="upload">
+  {%=o.name%}
+  <div class="progress progress-striped active"><div class="bar" style="width: 0%"></div></div>
+</div>
+</script>
