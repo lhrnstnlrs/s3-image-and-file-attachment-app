@@ -19,7 +19,7 @@ jQuery(document).on 'turbolinks:load', ->
     alert content.filename + ' failed to upload'
 
   $('#image-uploader').bind "ajax:complete", (e, data, xhr) ->
-    $("#image-list").append "<img src=" + data.find('Location') + " class='thumb' />"
+    $("#image-list").append "<img src=" + data.responseJSON.url + " class='thumb' />"
     $('form #post-attachments').append "<input type='hidden' name='images[]' value='"+ data.responseJSON.id + "' />"
 		$('#uploads_container').html ''
 
