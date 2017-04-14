@@ -15,27 +15,3 @@ jQuery(document).on 'turbolinks:load', ->
       else
         true
 
-  $("#image-uploader").bind 's3_upload_failed', (e, content) ->
-    alert content.filename + ' failed to upload'
-
-  $('#image-uploader').bind "ajax:complete", (e, data, xhr) ->
-    $("#image-list").append "<img src=" + data.responseJSON.url + " class='thumb' />"
-    $('form #post-attachments').append "<input type='hidden' name='images[]' value='"+ data.responseJSON.id + "' />"
-		$('#uploads_container').html ''
-
-	$('#image-uploader input:file').change (evt) ->
-    parentEl = $(this).parent()
-    tgt = evt.target or window.event.srcElement
-    files = tgt.files
-    if FileReader and files and files.length
-      fr = new FileReader
-      extension = files[0].name.split('.').pop().toLowerCase()
-
-      fr.onload = (e) ->
-        success = fileTypes.indexOf(extension) > -1
-        if success
-          $('#uploads_container').append '<img src="' + fr.result + '" class="thumb"/>'
-        return
-
-      fr.readAsDataURL files[0]
-    return
