@@ -25,21 +25,15 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
+    success = update_attachments
 
     respond_to do |format|
-      if @post.save
-        if params[:images]
-          params[:images].each { |image|
-            @post.pictures.create(image: image)
-          }
-        end
+      if success
         if params[:files]
           params[:files].each { |file|
             @post.attachments.create(file: file)
           }
         end
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
-        format.json { render :show, status: :created, location: @post }
       else
         format.html { render :new }
         format.json { render json: @post.errors, status: :unprocessable_entity }
@@ -51,7 +45,7 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1.json
   def update
     respond_to do |format|
-      if @post.update(post_params)
+      if @post.update(post_params) && update_attachments
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
       else
@@ -81,4 +75,10 @@ class PostsController < ApplicationController
     def post_params
       params.require(:post).permit(:title, :content)
     end
+
+  def update_attachments
+    pictures = params[:images] || []
+
+    @post.update(pictures: Picture.where(id: pictures))
+  end
 end

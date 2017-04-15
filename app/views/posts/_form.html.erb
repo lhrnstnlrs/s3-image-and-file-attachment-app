@@ -29,4 +29,11 @@
   <div class="actions form-group">
     <%= f.submit 'Save', class: 'btn btn-block btn-primary' %>
   </div>
+
+  <div id="post-attachments">
+    <% @post.pictures.each do |picture| %>
+      <%= hidden_field_tag 'images[]', picture.id %>
+    <% end %>
+  </div>
+
 <% end %>

@@ -8,7 +8,7 @@
     <div class="col-md-3 col-sm-6 hero-feature">
       <div class="thumbnail">
         <% if post.pictures.exists? %>
-            <img class="img-responsive img-center" src="<%= post.pictures.last.image.url(:thumb) %>" alt="">
+          <%= image_tag posts.pictures.last.image.url(:thumb), :class => "img-responsive img-center"%>
         <% else %>
           <img class="img img-responsive img-center" src="http://placehold.it/300x100" alt="">
         <% end %>

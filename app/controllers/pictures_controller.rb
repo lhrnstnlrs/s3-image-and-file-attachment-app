@@ -31,7 +31,7 @@ class PicturesController < ApplicationController
   # PATCH/PUT /pictures/1.json
   def update
     respond_to do |format|
-      if @picture.update(picture_params)
+      if @picture.update(picture_params) 
         format.html { redirect_to @picture, notice: 'Picture was successfully updated.' }
         format.json { render :show, status: :ok, location: @picture }
       else
