@@ -15,3 +15,5 @@ jQuery(document).on 'turbolinks:load', ->
       else
         true
 
+  $("#image-uploader").bind 's3_upload_failed', (e, content) ->
+    alert content.filename + ' failed to upload'
